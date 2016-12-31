@@ -7,7 +7,7 @@ require 'uri'
 $config = {
   "count" => 20,
   "viewer" => "/usr/bin/feh",
-  "proxy" => "http://localhost:8080/bnc",
+  "proxy" => "",
   "pass" => "p455vv0rd",
   "timeout" => 10000
 }
