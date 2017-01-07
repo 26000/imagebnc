@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gopkg.in/ini.v1"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -50,14 +51,7 @@ func main() {
 			fmt.Fprintf(w, "failed")
 			return
 		}
-		buf := make([]byte, 2048)
-		for {
-			n, err := resp.Body.Read(buf)
-			w.Write(buf[:n])
-			if err != nil {
-				break
-			}
-		}
+		io.Copy(w, resp.Body)
 		resp.Body.Close()
 		log.Printf("Loaded '%v'", r.FormValue("file"))
 	})
